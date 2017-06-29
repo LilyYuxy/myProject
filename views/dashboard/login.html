@@ -31,28 +31,11 @@
     </div>
     
     <?php include '/views/public/js.html' ?>
-
     <script>
-        $(function(){
-            $("#form-login").submit(function(){
-                $(this).ajaxSubmit({
-                    url: "/api/login",
-                    type: "post",
-                    success: function(data){
-                        console.log(data);
-                        if(data.code == 200){
-                            $.cookie("userinfo",JSON.stringify(data.result),{path:'/'});
-                            location.href = "/";
-                        }
-                    },
-                    error: function(){
-                       console.log("error"); 
-                    }
-                });
-                return false;
-            });
-            
-        });
+        // 配置了baseUrl，使用路径时相对路径
+        // 一定要使用require函数！！！
+        require(["static/js/dashboard/login"]);
     </script>
+
 </body>
 </html>

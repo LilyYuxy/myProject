@@ -56,27 +56,7 @@
     </div>
     
     <?php include '/views/public/js.html' ?>
+        
     
-    <!-- 模版引擎 -->
-    <script type="text/template" id="profile-tpl">
-        <div class="avatar img-circle">
-            <img src="{{tc_avatar}}">
-        </div>
-        <h4>{{tc_name}}</h4>
-    </script>
-
-    
-    <!--引用模版引擎  -->
-    <script>
-        $(function(){
-            var userInfo = JSON.parse($.cookie("userinfo"));
-            console.log(userInfo);
-            var html = template("profile-tpl",userInfo);
-            console.log(html);
-
-            // 渲染
-            $("#userinfo").html(html);
-        })
-    </script>
 </body>
 </html>
