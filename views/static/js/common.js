@@ -3,7 +3,6 @@
 define(["jquery","template","cookie"],function($,template){
 
 		$(function(){
-
 			
 			// 判断当前页面的路径,是不是在登录页，不是进行如下操作
 			if("/dashboard/login" != location.pathname){
