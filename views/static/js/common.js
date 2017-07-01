@@ -48,9 +48,9 @@ define(["jquery","template","cookie"],function($,template){
 				$ul.slideToggle();
 
 				// 找二级菜单下的a标签如果有选中的就把当前li的active给取消掉
-				if($ul.find('a.active').length > 0){
-					$(this).children('a').removeClass('active');
-				}
+				// if($ul.find('a.active').length > 0){
+				// 	$(this).children('a').removeClass('active');
+				// }
 				// alert(1);				
 			});
 
