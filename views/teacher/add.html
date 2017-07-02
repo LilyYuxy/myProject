@@ -32,16 +32,18 @@
                 <div class="form-group">
                     <label for=""  class="col-xs-3 control-label">姓名</label>
                     <div class="col-xs-4">
-                        <input type="text" name="tc_name" value="{{tc_name}}" class="form-control input-sm" placeholder="讲师名称">
+                        <input type="text" name="tc_name" data-required data-describedby="msgfortcname" data-description="tcname" value="{{tc_name}}" class="form-control input-sm" placeholder="讲师名称">
                     </div>
+                    <label id="msgfortcname" class="control-label"></label>
                 </div>
 
                 {{if !tc_id}}
                 <div class="form-group">
                     <label for="" class="col-xs-3 control-label">密码</label>
                     <div class="col-xs-4">
-                        <input type="password"name="tc_pass" class="form-control input-sm">
+                        <input type="password" name="tc_pass" data-required data-trim data-describedby="msgfortcpass" data-description="tcpass" class="form-control input-sm">
                     </div>
+                    <label id="msgfortcpass" class="control-label"></label>
                 </div>
                 {{/if}}
 
@@ -49,12 +51,13 @@
                 <div class="form-group">
                     <label for="" class="col-xs-3 control-label">入职时间</label>
                     <div class="col-xs-4">
-                        <input type="text" name="tc_join_date" value="{{tc_join_date}}" class="form-control input-sm">
+                        <input type="text" name="tc_join_date" data-required data-describedby="msgfortcjoindate" data-description="tcjoindate" value="{{tc_join_date}}" class="form-control input-sm">
                     </div>
+                    <label id="msgfortcjoindate" class="control-label"></label>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-xs-3 control-label">类型</label>
-                    <div class="col-xs-2">
+                    <div class="col-xs-4">
                         <select name="tc_type" class="form-control input-sm">
                             <option value="1" {{if tc_type == 1}}selected{{/if}}>讲师</option>
                             <option value="0" {{if tc_type == 0}}selected{{/if}}>管理员</option>
@@ -74,7 +77,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-xs-7">
-                        <a href="./advert_list.html" id="btnSave" class="btn btn-success btn-sm pull-right" data-type="{{type}}">{{btnText}}</a>
+                        <a href="/teacher/list" id="btnSave" class="btn btn-success btn-sm pull-right" data-type="{{type}}">{{btnText}}</a>
                     </div>                          
                 </div>
             </form>

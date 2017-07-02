@@ -1,4 +1,4 @@
-define(["jquery","template","util","form"],function($,template,util){
+define(["jquery","template","util","form","datepicker","datepicker-zh","validate"],function($,template,util){
 
 	var query = 	util.getQueryObj();
 
@@ -16,6 +16,12 @@ define(["jquery","template","util","form"],function($,template,util){
 					// 渲染模版
 					var html = template("add-edit-tpl",data.result);
 					$('.teacher').html(html);
+					$("input[name=tc_join_date]").datepicker({
+						format:"yyyy-mm-dd",
+						language:"zh-CN"
+					});
+					$("#teacherform").validate({
+					});
 			}
 		})
 	
@@ -28,31 +34,54 @@ define(["jquery","template","util","form"],function($,template,util){
 				type: "add"
 			});
 			$('.teacher').html(html);
+			$("input[name=tc_join_date]").datepicker({
+						format:"yyyy-mm-dd",
+						language: "zh-CN"
+				});
+			$("#teacherform").validate({
+					description: {
+							"tcname": {
+								required: "请输入正确信息"
+							},
+							"tcpass": {
+								required: "请输入正确格式"
+							},
+							"tcjoindate": {
+								required: "请输入正确入职时间"
+							}
+					},
+					onBlur: true,
+					onKeyup: true,
+					sendForm: false,
+					eachInvalidField: function(){
+						// console.log("eachValidField,被调用了", this);
+						this.parent().parent().addClass('has-error').removeClass('has-success');
+					},
+					eachValidField: function(){
+						this.parent().parent().addClass('has-success').removeClass('has-error');
+					},
+					valid: function(){
+							var type = $("#btnSave").data("type");
+							var url = "";
+							if(type == "edit"){
+								url = "/api/teacher/update";
+							}else{
+								url = "/api/teacher/add";
+							}
+
+							// 表单异步提交	
+						$("#teacherform").ajaxSubmit({
+								url: url,
+								type: "post",
+								success: function(data){
+										if(data.code == 200){
+											location.href = "/teacher/list";
+										}
+								}
+						});
+					}
+			});
 
 	}
-
-	// 给保存按钮注册点击事件
-	$("#teacher").on('click', '#btnSave', function() {
-			var type = $(this).data("type");
-			var url = "";
-			if(type == "edit"){
-				url = "/api/teacher/update";
-			}else{
-				url = "/api/teacher/add";
-			}
-
-			// 表单异步提交	
-		$("#teacherform").ajaxSubmit({
-			url: url,
-			type: "post",
-			success: function(data){
-					if(data.code == 200){
-						location.href = "/teacher/list";
-					}
-			}
-
-		});
-		return false;
-	});
 
 });
