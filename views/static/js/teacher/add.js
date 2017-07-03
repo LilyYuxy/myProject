@@ -6,26 +6,37 @@ define(["jquery","template","util","form","datepicker","datepicker-zh","validate
 		// 如果获取到id，则为编辑；否则添加
 		// 编辑
 		$.ajax({
-			url: '/api/teacher/edit',
-			type: 'GET',
-			data: {tc_id: query.id},
-			success: function(data){
-					data.result.title = "讲师编辑";
-					data.result.btnText = "保 存";
-					data.result.type = "edit";
-					// 渲染模版
-					var html = template("add-edit-tpl",data.result);
-					$('.teacher').html(html);
-					$("input[name=tc_join_date]").datepicker({
-						format:"yyyy-mm-dd",
-						language:"zh-CN"
-					});
-					$("#teacherform").validate({
-					});
-			}
-		})
-	
-			
+				url: '/api/teacher/edit',
+				type: 'GET',
+				data: {tc_id: query.id},
+				success: function(data){
+						data.result.title = "讲师编辑";
+						data.result.btnText = "保 存";
+						data.result.type = "edit";
+						// 渲染模版
+						var html = template("add-edit-tpl",data.result);
+						$('.teacher').html(html);
+						$("input[name=tc_join_date]").datepicker({
+							format:"yyyy-mm-dd",
+							language:"zh-CN"
+						});
+						$("#teacherform").validate({
+								sendForm:false,
+									// 表单异步提交	
+								valid:function(){
+									$("#teacherform").ajaxSubmit({
+											url: "/api/teacher/update",
+											type: "post",
+											success: function(data){
+													if(data.code == 200){
+														location.href = "/teacher/list";
+													}
+											}
+									});
+								}
+						});
+				}
+		 })			
 	}else{
 		// 添加// 渲染模版
 			var html = template("add-edit-tpl",{
@@ -61,17 +72,11 @@ define(["jquery","template","util","form","datepicker","datepicker-zh","validate
 						this.parent().parent().addClass('has-success').removeClass('has-error');
 					},
 					valid: function(){
-							var type = $("#btnSave").data("type");
-							var url = "";
-							if(type == "edit"){
-								url = "/api/teacher/update";
-							}else{
-								url = "/api/teacher/add";
-							}
+
 
 							// 表单异步提交	
 						$("#teacherform").ajaxSubmit({
-								url: url,
+								url: "/api/teacher/add",
 								type: "post",
 								success: function(data){
 										if(data.code == 200){

@@ -29,6 +29,7 @@
         </ol>
         <div class="teacher-add">
             <form action="" id="teacherform" class="form-horizontal col-xs-offset-2">
+                <input type="hidden" value="{{tc_id}}" name="tc_id">
                 <div class="form-group">
                     <label for=""  class="col-xs-3 control-label">姓名</label>
                     <div class="col-xs-4">
@@ -77,7 +78,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-xs-7">
-                        <a href="/teacher/list" id="btnSave" class="btn btn-success btn-sm pull-right" data-type="{{type}}">{{btnText}}</a>
+                        <button id="btnSave" class="btn btn-success btn-sm pull-right" data-type="{{type}}">{{btnText}}</button>
                     </div>                          
                 </div>
             </form>
