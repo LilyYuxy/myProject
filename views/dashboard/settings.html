@@ -71,11 +71,15 @@
             </div>
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">籍贯</label>
-                <div class="col-xs-5">
-                    <select name="" class="form-control input-sm">
-                        <option value="p">河北省</option>
-                        <option value="c">山东省</option>
-                        <option value="d">北京市</option>
+                <div class="col-xs-5" id="region">
+                    <select name="tc_province" id="p" data-id="{{tc_province}}" class="form-control input-sm">
+                        <option value="">请选择</option>
+                    </select>
+                    <select name="tc_city" id="c" data-id="{{tc_city}}" class="form-control input-sm">
+                        <option value="">请选择</option>
+                    </select>
+                    <select name="tc_district" id="d" data-id="{{tc_district}}" class="form-control input-sm">
+                        <option value="">请选择</option>
                     </select>
                 </div>
             </div>
@@ -88,19 +92,19 @@
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">电子邮箱</label>
                 <div class="col-xs-5">
-                    <input type="text" class="form-control input-sm" value="{{tc_email}}">
+                    <input type="text" class="form-control input-sm" name="tc_email" value="{{tc_email}}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">入职日期</label>
                 <div class="col-xs-5">
-                    <input type="text" class="form-control input-sm">
+                    <input type="text" class="form-control input-sm" name="tc_join_date" value="{{tc_join_date}}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">个人介绍</label>
                 <div class="col-xs-5 ckeditor">
-                    <textarea name="" rows="15" class="form-control input-sm">{{tc_introduce}}</textarea>
+                    <textarea name="tc_introduce" rows="15" id="introduce" class="form-control input-sm">{{tc_introduce}}</textarea>
                 </div>
             </div>
             <div class="form-group">

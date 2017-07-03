@@ -11,7 +11,9 @@ require.config({
      "datepicker": "assets/bootstrap-datepicker/js/bootstrap-datepicker.min",
      "datepicker-zh": "assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min",
      "validate": "assets/jquery-validate/jquery-validate.min",
-     "language": ""
+     "ckeditor": "assets/ckeditor/ckeditor",
+     "region": "assets/jquery-region/jquery.region",
+     "uploadify": "assets/uploadify/jquery.uploadify"
 	},
 	shim: {
 		"bootstrap": {
@@ -22,6 +24,12 @@ require.config({
 		},
 		"validate": {
 			deps: ["jquery"]
-		}
+		},
+		"ckeditor": {
+      exports: "CKEDITOR"
+    },
+    "uploadify": {
+      deps: ["jquery"]
+    }
 	}
 });
