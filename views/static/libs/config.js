@@ -20,7 +20,7 @@ require.config({
 			deps: ["jquery"]
 		},
 		"datepicker-zh": {
-			deps: ["jquery"]
+			deps: ["bootstrap"]
 		},
 		"validate": {
 			deps: ["jquery"]

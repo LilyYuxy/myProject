@@ -1,4 +1,4 @@
-define(["jquery", "ckeditor", "template", "nprogress", "datepicker", "datepicker-zh", "region", "uploadify"], function($, CKEDITOR, template, NProgress){
+define(["jquery", "ckeditor", "template", "nprogress", "datepicker", "datepicker-zh", "region", "uploadify", "form"], function($, CKEDITOR, template, NProgress){
 
 		// 渲染模版
 		$.ajax({
@@ -51,20 +51,33 @@ define(["jquery", "ckeditor", "template", "nprogress", "datepicker", "datepicker
 											NProgress.start();
 									},
 									onUploadSuccess: function(file, data){
-											var data = JSON.parse(data);
+											data = JSON.parse(data);
 											if(data.code == 200){
 												$(".preview>img").attr("src", data.result.path);
 											}
 									},
 									onUploadComplete: function(){
-											NProgress.start();
+											NProgress.done();
 									}
 							});
 					}		
 			}
 		});
 		
+		// 表单提交
 
-		
+		$(".settings").on("submit", "form", function(){
+				$(this).ajaxSubmit({
+						url: "/api/teacher/modify",
+						type: "post",
+						success: function(data){
+								if(data.code == 200){
+									alert("修改成功！");
+								}
+						}
+				});
+
+				return false;
+		});
 		
 });
