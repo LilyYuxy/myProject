@@ -1,10 +1,18 @@
-define(["jquery", "template"], function($, template){
+define(["jquery", "template", "util"], function($, template, util){
+
+		var csid = util.getQuery("id");
 
 		// 发送请求，渲染模版
 		$.ajax({
-			url: '/path/to/file',
-			type: 'default GET (Other values: POST)',
-			dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-			data: {param1: 'value1'},
+			url: '/api/course/lesson',
+			data: {cs_id: csid},
+			success: function(data){
+					if(data.code == 200){
+						// console.log(data);
+						var html = template("step3-tpl", data.result);
+						$(".steps").html(html);
+					}
+
+			}
 		});
 });

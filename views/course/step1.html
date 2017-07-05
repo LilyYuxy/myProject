@@ -33,7 +33,7 @@
         <div class="brief">
             <div class="thumb">
                 {{if cs_cover=="" }}
-                <img src="/views/static/uploads/course.png" alt="">
+                <img src="/views/static/uploads/course_1.jpg" alt="">
                 {{else}}
                 <img src="{{cs_cover}}" alt="">
                 {{/if}}
@@ -49,19 +49,19 @@
         <!-- 步聚 -->
         <ul class="forwards list-unstyled">
             <li>
-                <a href="./course_add_step1.html" class="active">
+                <a href="javascript:void(0);" class="active">
                 <b>1</b>
                 基本信息
                 </a>
             </li>
             <li>
-                <a href="./course_add_step2.html">
+                <a href="/course/step2?id={{cs_id}}">
                 <b>2</b>
                 课程图片
                 </a>
             </li>
             <li>
-                <a href="./course_add_step3.html">
+                <a href="/course/step3?id={{cs_id}}">
                 <b>3</b>
                 课时管理
                 </a>

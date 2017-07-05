@@ -6,6 +6,9 @@ define(["jquery", "template", "util", "uploadify", "jcrop"], function($, templat
 		var w = 0;
 		var h = 0;
 
+		// 图片裁切插件的api
+		var jcrop_api;
+
 		// 发送请求，渲染模版
 		$.ajax({
 			url: '/api/course/picture',
@@ -33,6 +36,10 @@ define(["jquery", "template", "util", "uploadify", "jcrop"], function($, templat
 												data = JSON.parse(data);
 												$(".preview>img").attr("src", data.result.path);
 												$("#cropBtn").prop("disabled", false);
+												if(jcrop_api){
+													jcrop_api.destroy();
+													$("#cropBtn").prop("disabled", true);
+												}
 										}
 								});
 								$("#uploadBtn-button").css("line-height", "1.5");
